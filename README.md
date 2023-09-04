@@ -114,16 +114,8 @@ To push this structure to GitHub using GitHub Codespaces:
 
 Your project is now pushed to GitHub, and you can share, clone, or work collaboratively with others on it.
 
-## Step 9: Test Code Locally
 
-To test your code locally using the terminal within Codespaces:
-
-1. Open the integrated terminal within your Codespace (typically located at the bottom).
-2. Install Flask by entering the following command: `pip install flask`
-3. Run the following command to test in the codespaces webview: `python main.py`
-4. An option in the bottom right will appear to open the webview
-
-## Step 10: Add GCP_SA_KEY to GitHub Repository
+## Step 9: Add GCP_SA_KEY to GitHub Repository
 
 To securely store your Google Cloud Platform Service Account Key in your GitHub repository for use in GitHub Actions or other CI/CD integrations, follow these steps:
 
@@ -140,7 +132,7 @@ To securely store your Google Cloud Platform Service Account Key in your GitHub 
 
 **Note**: Never commit or expose your Service Account key directly in your code or repository files. Storing it as a secret in GitHub ensures that sensitive data remains confidential and is securely passed to GitHub Actions when needed.
 
-## Step 11: CI/CD YML Setup
+## Step 10: CI/CD YML Setup
 
 To set up the continuous integration and continuous delivery (CI/CD) configuration for your project:
 
@@ -148,14 +140,21 @@ To set up the continuous integration and continuous delivery (CI/CD) configurati
 2. Locate the `ci_cd.yml` file within your repository and open it.
 3. Uncomment the relevant code sections in the file (typically, these sections would be commented using `#` symbols at the start of each line).
 4. Pay close attention to the following placeholders:
-   - `GCP Project Name`: This is the name of your Google Cloud Platform project.
-   - `Artifact Registry Repo Name`: The name of the repository in the Artifact Registry where your artifacts will be stored.
-   - `Image Name`: This denotes the name of the image you wish to push to the Artifact Registry.
-5. Replace these placeholders with the appropriate values specific to your project setup.
+   - `GCP_PROJECT_NAME`: This is the name of your Google Cloud Platform project.
+   - `ARTIFACT_REPO_NAME`: The name of the repository in the Artifact Registry where your artifacts will be stored.
+   - `IMAGE_NAME`: This denotes the name of the image you wish to push to the Artifact Registry.
+5. Within the file, you'll find an `env` section that defines environment variables. These are placeholders that you need to replace with actual values:
+
+```yml
+    env: # Define environment variables here
+      GCP_PROJECT_NAME: flask-web-curriculum
+      ARTIFACT_REPO_NAME: flask-app-registry
+      IMAGE_NAME: flask_app_image
+```
 
 **Note**: Ensure that the names you use in the YML file match the actual names you've set up within your GCP project, Artifact Registry, and for your image. A mismatch could lead to deployment issues.
 
-## Step 12: Push to GitHub Repo using Codespaces
+## Step 11: Push to GitHub Repo using Codespaces
 
 To push your changes to your GitHub repository using the Source Control tab within Codespaces:
 
@@ -169,7 +168,7 @@ To push your changes to your GitHub repository using the Source Control tab with
 **Note**: Ensure you have all necessary changes committed before pushing, as this will update the remote repository with your local changes.
 
 
-## Step 13: Enable Cloud Run API and Service Setup
+## Step 12: Enable Cloud Run API and Service Setup
 
 The previous step will successfully push the image to the Artifact Registry but might encounter issues during deployment on Cloud Run. Here's how to rectify it:
 
@@ -192,7 +191,7 @@ The previous step will successfully push the image to the Artifact Registry but 
 
 **Note**: This process is a workaround to ensure the Cloud Run Admin API is enabled and working correctly. Always be cautious when creating and deleting services to avoid unexpected charges or disruptions.
 
-## Step 14: Push Again to GitHub Repo using the Source Control Tab
+## Step 13: Push Again to GitHub Repo using the Source Control Tab
 
 Having set up Cloud Run, it's now time to push the changes again to the GitHub repository using Codespaces.
 
@@ -207,7 +206,7 @@ Having set up Cloud Run, it's now time to push the changes again to the GitHub r
 
 **Reminder**: It's always a good practice to review your changes and ensure everything is in order before pushing updates to a remote repository.
 
-## Step 15: Test Deployed Web App
+## Step 14: Test Deployed Web App
 
 After deploying the app on Cloud Run, you'll want to test it to ensure it's running as expected.
 
@@ -220,3 +219,13 @@ After deploying the app on Cloud Run, you'll want to test it to ensure it's runn
 7. You should now see your deployed web app running live.
 
 **Note**: Always test new deployments to ensure they work as intended and address any potential issues before promoting them to production environments.
+
+## Step 15: Test Code Locally
+
+To test your code locally using the terminal within Codespaces:
+
+1. Open the integrated terminal within your Codespace (typically located at the bottom).
+2. Install Flask by entering the following command: `pip install flask`
+3. Run the following command to test in the codespaces webview: `python main.py`
+4. An option in the bottom right will appear to open the webview
+5. Now step by step change and add filenames and add your code to project while testing in webview
