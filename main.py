@@ -12,4 +12,5 @@ def page():
     return render_template("page.html")  # This renders the page.html template
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=80)
+

@@ -1,0 +1,40 @@
+name: Build, Push to Google Artifact Registry, and Deploy to Cloud Run
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Authenticate with Google Cloud
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+
+    - name: Configure Docker for GCP Artifact Registry
+      run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+    - name: Build Docker image
+      run: docker build -t us-central1-docker.pkg.dev/flask-web-curriculum/flask-app-registry/flask_app_image:latest .
+
+    - name: Push Docker image to Google Artifact Registry
+      run: docker push us-central1-docker.pkg.dev/flask-web-curriculum/flask-app-registry/flask_app_image:latest
+
+    - name: Deploy to Google Cloud Run
+      uses: google-github-actions/deploy-cloudrun@v1
+      with:
+        service: 'flask-web-app'
+        image: 'us-central1-docker.pkg.dev/flask-web-curriculum/flask-app-registry/flask_app_image:latest'
