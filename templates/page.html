@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Page - My Flask Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('page') }}">Page</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Welcome to Page!</h1>
+        <p>This is the page page of my awesome Flask website</p>
+
+        <!-- Button and display for click count -->
+        <button id="clickButton">Click me!</button>
+        <p>You clicked the button <span id="clickCount">0</span> times.</p>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

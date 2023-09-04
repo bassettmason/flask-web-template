@@ -1,0 +1,29 @@
+/* Reset some default margin and padding values */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif; /* Use a common font family */
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Dark gray text */
+}
+
+main {
+    max-width: 800px; /* Limit the width for readability */
+    margin: 50px auto; /* Center the content and give some top and bottom spacing */
+    padding: 20px;
+    background-color: #ffffff; /* White background for the main content */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* A subtle shadow for the main content */
+}
+
+h1 {
+    font-size: 24px; /* Larger text for the main heading */
+    margin-bottom: 20px; /* Spacing between the title and the paragraph */
+}
+
+p {
+    font-size: 18px; /* Slightly larger text for the paragraph for readability */
+    line-height: 1.5; /* Space between lines for better readability */
+}
