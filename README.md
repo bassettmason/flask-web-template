@@ -1,5 +1,6 @@
 # Project Setup Instructions
 
+
 ## Step 1: Create a GCP Project
 
 1. Navigate to the [Google Cloud Console](https://console.cloud.google.com/).
